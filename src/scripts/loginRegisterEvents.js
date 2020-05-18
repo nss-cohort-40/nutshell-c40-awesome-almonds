@@ -1,4 +1,5 @@
 import API from "./databaseInteractions.js"
+import DOM from "./domInteractions.js"
 
 
 const loginRegisterListener = {
@@ -18,6 +19,7 @@ const loginRegisterListener = {
               document.getElementById("loginContainer").classList.add("hidden")
               document.getElementById("userContainer").classList.remove("hidden")
               document.getElementById("userId").innerHTML = person.id
+              DOM.buildMessages()
             } else {
               alert("Incorrect Password")
             }
@@ -45,14 +47,14 @@ const loginRegisterListener = {
       API.fetchUsers()
         .then(users => {
           const person = users.find(user => user.email === createEmail)
-          let newUserId = users.length + 1
+          let newUserId = users.length + 1 
           if (!person) {
             if (createPassword === confirmPassword) {
               API.postUsers({
                 username: createEmail.split("@")[0],
                 email: createEmail,
                 password: createPassword
-              })
+              }) 
               document.getElementById("registerContainer").classList.add("hidden")
               document.getElementById("userContainer").classList.remove("hidden")
               document.getElementById("userId").innerHTML = newUserId
@@ -62,8 +64,9 @@ const loginRegisterListener = {
           } else {
             alert("User already exists")
           }
-        })
+        }) 
     })
+    DOM.buildMessages()
   }
 }
 
