@@ -1,6 +1,7 @@
 import API from "./databaseInteractions.js"
 import DOM from "./domInteractions.js"
 
+
 const loginRegisterListener = {
   login() {
     document.getElementById("loginButton").addEventListener("click", () => {
