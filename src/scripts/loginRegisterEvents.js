@@ -64,8 +64,9 @@ const loginRegisterListener = {
           } else {
             alert("User already exists")
           }
-        })
+        }) 
     })
+    DOM.buildMessages()
   }
 }
 
