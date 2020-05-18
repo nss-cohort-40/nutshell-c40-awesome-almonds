@@ -12,6 +12,19 @@ const API = {
       },
       body: JSON.stringify(data)
     })
+  },
+  fetchArticles() {
+    return fetch(`http://localhost:8088/articles`)
+      .then(data => data.json())
+  },
+  postArticles(artObj) {
+    return fetch(`http://localhost:8088/articles`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(artObj)
+    })
   }
 }
 
