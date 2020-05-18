@@ -1,5 +1,6 @@
 import API from "./databaseInteractions.js"
 
+
 const loginRegisterListener = {
   login() {
     document.getElementById("loginButton").addEventListener("click", () => {
@@ -9,8 +10,6 @@ const loginRegisterListener = {
         alert("Must fill in forms")
         return
       }
-      console.log(API)
-      console.log(API.fetchUsers())
       API.fetchUsers()
         .then(users => {
           const person = users.find(user => user.email === userEmail)
@@ -18,6 +17,7 @@ const loginRegisterListener = {
             if (person.password === userPassword) {
               document.getElementById("loginContainer").classList.add("hidden")
               document.getElementById("userContainer").classList.remove("hidden")
+              document.getElementById("userId").innerHTML = person.id
             } else {
               alert("Incorrect Password")
             }
@@ -45,6 +45,7 @@ const loginRegisterListener = {
       API.fetchUsers()
         .then(users => {
           const person = users.find(user => user.email === createEmail)
+          let newUserId = users.length + 1
           if (!person) {
             if (createPassword === confirmPassword) {
               API.postUsers({
@@ -54,6 +55,7 @@ const loginRegisterListener = {
               })
               document.getElementById("registerContainer").classList.add("hidden")
               document.getElementById("userContainer").classList.remove("hidden")
+              document.getElementById("userId").innerHTML = newUserId
             } else {
               alert("Passwords do not match")
             }
