@@ -12,7 +12,6 @@ let DOM = {
     document.getElementById("messageOutput").innerHTML = ""
     API.fetchMessages()
     .then(messages => {
-      messages.reverse()
       messages.forEach(message => {
       DOM.buildMessage(message)
     })})
