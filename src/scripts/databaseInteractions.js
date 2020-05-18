@@ -25,6 +25,12 @@ const API = {
       },
       body: JSON.stringify(artObj)
     })
+  },
+  deleteArticle(artId) {
+    console.log(artId)
+    return fetch(`http://localhost:8088/articles/${artId}`, {
+      method: "DELETE"
+    })
   }
 }
 

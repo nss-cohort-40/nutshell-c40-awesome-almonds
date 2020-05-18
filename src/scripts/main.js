@@ -5,3 +5,4 @@ loginRegisterListener.login();
 loginRegisterListener.register();
 loginRegisterListener.registerUser();
 newsListener.renderNewsFormButton();
+newsListener.deleteNewsArticle();

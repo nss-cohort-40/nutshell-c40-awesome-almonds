@@ -1,4 +1,5 @@
 import API from "./databaseInteractions.js";
+import DOM from "./domInteractions.js";
 
 let newsContainer = document.getElementById("newsContainer")
 const newsListener = {
@@ -25,29 +26,43 @@ const newsListener = {
       let newsTitle = document.getElementById("newsTitle").value
       let synopsis = document.getElementById("synopsis").value
       let url = document.getElementById("url").value
-      let dateSubmitted = new Date() 
+      let dateSubmitted = new Date()
+      let userId = document.getElementById("userId").innerHTML
       if (newsTitle === "" || synopsis === "" || url === ""){
         alert("Must fill in forms")
         return
       }
       API.postArticles({
-        userId: "",
+        userId: userId,
         url: url,
         title: newsTitle,
         synopsis: synopsis,
         date: dateSubmitted
       })
+      .then(this.presentNewsDashboard)
+      
     }) 
   },
   presentNewsDashboard () {
     API.fetchArticles()
       .then(articles => {
-        const sortArticles = articles.sort((a, b) => {
+        const sortedArticles = articles.sort((a, b) => {
           return new Date(a.date) - new Date(b.date)
         })
         // display to dashboard in order
-        newsContainer.innerHTML = 
+        DOM.renderArticles(sortedArticles)
       })
+      .then(this.deleteNewsArticle)
+  },
+  deleteNewsArticle () {
+      newsContainer.addEventListener("click", event => {
+      console.log(event.target.value)
+      if(event.target.startsWith("delete--")){
+        const artId = event.target.id.split("delete--")[1]
+        API.deleteArticle(artId)
+        .then(this.presentNewsDashboard)
+      }
+    })
   }
 }
 
