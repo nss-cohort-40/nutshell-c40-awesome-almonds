@@ -13,6 +13,32 @@ const API = {
       body: JSON.stringify(data)
     })
   },
+  fetchArticles() {
+    return fetch(`http://localhost:8088/articles`)
+      .then(data => data.json())
+  },
+  fetchArticleById(articleId) {
+    return fetch(`http://localhost:8088/articles/${articleId}`)
+    .then(data => data.json())
+  },
+  putArticle(articleObj, articleId) {
+    return fetch(`http://localhost:8088/articles/${articleId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(articleObj)
+    }) 
+  },
+  postArticle(articleObj) {
+    return fetch(`http://localhost:8088/articles`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(articleObj)
+    })
+  },
   postMessage(data) {
     console.log(data)
     return fetch(`http://localhost:8088/messages`, {
@@ -21,6 +47,11 @@ const API = {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data)
+    })
+  },
+  deleteArticle(artId) {
+    return fetch(`http://localhost:8088/articles/${artId}`, {
+      method: "DELETE",
     })
   },
   fetchMessages() {
