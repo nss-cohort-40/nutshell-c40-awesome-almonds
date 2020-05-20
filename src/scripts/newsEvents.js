@@ -56,7 +56,6 @@ const newsListener = {
       document.getElementById("articleId").innerHTML = article.id
       document.getElementById(`synopsis`).value = article.synopsis
       document.getElementById(`url`).value = article.url
-      // document.getElementById("articleUserId").innerHTML = article.userId
     })
   },
   editArticle (articleId) {
@@ -64,7 +63,6 @@ const newsListener = {
       title: document.getElementById("newsTitle").value,
       synopsis: document.getElementById("synopsis").value,
       url: document.getElementById("url").value,
-      // userId: parseInt(document.getElementById("userId").innerHTML),
       userId: sessionStorage.getItem("userId"),
       date: new Date()
     }
@@ -74,22 +72,25 @@ const newsListener = {
       document.getElementById("newsTitle").value = ""
       document.getElementById("synopsis").value = ""
       document.getElementById("url").value = ""
-      // document.getElementById("articleUserId").innerHTML = ""
       this.presentNewsDashboard()
     })
   },
+  editOrDeleteArticle () {
+    this.presentNewsDashboard()
+    document.getElementById("articleOutput").addEventListener("click", event => {
+      if(event.target.id.includes("delete--")){
+        const artId = event.target.id.split("delete--")[1]
+        API.deleteArticle(artId)
+        .then(newsListener.presentNewsDashboard)
+      }
+      if(event.target.id.includes("edit--")){
+        const artId = event.target.id.split("edit--")[1]
+        DOM.createNewsForm()
+        newsListener.updateArticle(artId)
+      }
+    })
+  }
 }
 
-document.getElementById("articleOutput").addEventListener("click", event => {
-  if(event.target.id.includes("delete--")){
-    const artId = event.target.id.split("delete--")[1]
-    API.deleteArticle(artId)
-    .then(newsListener.presentNewsDashboard)
-  }
-  if(event.target.id.includes("edit--")){
-    const artId = event.target.id.split("edit--")[1]
-    newsListener.updateArticle(artId)
-  }
-})
 
 export default newsListener;
