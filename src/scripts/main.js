@@ -6,5 +6,6 @@ loginRegisterListener.login();
 loginRegisterListener.register();
 loginRegisterListener.registerUser();
 newsListener.renderNewsFormButton();
+loginRegisterListener.logout()
 messageEvents.newMessage()
 messageEvents.editOrDelete()

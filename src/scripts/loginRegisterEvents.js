@@ -4,6 +4,12 @@ import DOM from "./domInteractions.js"
 
 const loginRegisterListener = {
   login() {
+    if (sessionStorage.getItem("userId")) {
+      document.getElementById("loginContainer").classList.add("hidden")
+      document.getElementById("userContainer").classList.remove("hidden")
+      DOM.buildMessages()
+      return
+    }
     document.getElementById("loginButton").addEventListener("click", () => {
       let userEmail = document.getElementById("loginEmail").value
       let userPassword = document.getElementById("loginPassword").value
@@ -18,8 +24,10 @@ const loginRegisterListener = {
             if (person.password === userPassword) {
               document.getElementById("loginContainer").classList.add("hidden")
               document.getElementById("userContainer").classList.remove("hidden")
-              document.getElementById("userId").innerHTML = person.id
+              sessionStorage.setItem("userId", person.id)
               DOM.buildMessages()
+              document.getElementById("loginEmail").value = ""
+              document.getElementById("loginPassword").value = ""
             } else {
               alert("Incorrect Password")
             }
@@ -57,7 +65,7 @@ const loginRegisterListener = {
               }) 
               document.getElementById("registerContainer").classList.add("hidden")
               document.getElementById("userContainer").classList.remove("hidden")
-              document.getElementById("userId").innerHTML = newUserId
+              sessionStorage.setItem("userId", newUserId)
             } else {
               alert("Passwords do not match")
             }
@@ -65,8 +73,15 @@ const loginRegisterListener = {
             alert("User already exists")
           }
         }) 
+        DOM.buildMessages()
     })
-    DOM.buildMessages()
+  },
+  logout() {
+    document.getElementById("logoutButton").addEventListener("click", () => {
+      sessionStorage.removeItem("userId")
+      document.getElementById("loginContainer").classList.remove("hidden")
+      document.getElementById("userContainer").classList.add("hidden")
+    })
   }
 }
 

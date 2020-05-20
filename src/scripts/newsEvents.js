@@ -20,7 +20,11 @@ const newsListener = {
         let synopsis = document.getElementById("synopsis").value
         let url = document.getElementById("url").value
         let dateSubmitted = new Date()
-        let userId = parseInt(document.getElementById("userId").innerHTML)
+        let userId = sessionStorage.getItem("userId")
+        document.getElementById("newsTitle").value = ""
+        document.getElementById("synopsis").value = ""
+        document.getElementById("url").value = ""
+        // let userId = parseInt(document.getElementById("userId").innerHTML)
         if (newsTitle === "" || synopsis === "" || url === ""){
           alert("Must fill in forms")
           return
@@ -48,12 +52,11 @@ const newsListener = {
   updateArticle (artId) {
     API.fetchArticleById(artId)
     .then(article => {
-      console.log(article)
       document.getElementById("newsTitle").value = article.title
       document.getElementById("articleId").innerHTML = article.id
       document.getElementById(`synopsis`).value = article.synopsis
       document.getElementById(`url`).value = article.url
-      document.getElementById("articleUserId").innerHTML = article.userId
+      // document.getElementById("articleUserId").innerHTML = article.userId
     })
   },
   editArticle (articleId) {
@@ -61,13 +64,17 @@ const newsListener = {
       title: document.getElementById("newsTitle").value,
       synopsis: document.getElementById("synopsis").value,
       url: document.getElementById("url").value,
-      userId: parseInt(document.getElementById("userId").innerHTML),
+      // userId: parseInt(document.getElementById("userId").innerHTML),
+      userId: sessionStorage.getItem("userId"),
       date: new Date()
     }
     API.putArticle(articleObj, articleId)
     .then((event) => {
       document.getElementById("articleId").innerHTML = ""
-      document.getElementById("articleUserId").innerHTML = ""
+      document.getElementById("newsTitle").value = ""
+      document.getElementById("synopsis").value = ""
+      document.getElementById("url").value = ""
+      // document.getElementById("articleUserId").innerHTML = ""
       this.presentNewsDashboard()
     })
   },

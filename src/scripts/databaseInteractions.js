@@ -40,7 +40,6 @@ const API = {
     })
   },
   postMessage(data) {
-    console.log(data)
     return fetch(`http://localhost:8088/messages`, {
       method: 'POST',
       headers: {

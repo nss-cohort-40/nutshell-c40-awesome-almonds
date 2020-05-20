@@ -7,7 +7,7 @@ let messagesEvents = {
       if (document.getElementById("editMessage").innerHTML != "") {
         const messageObject = {
           message: document.getElementById("messageInput").value,
-          userId: document.getElementById("userId").innerHTML,
+          userId: sessionStorage.getItem("userId"),
           id: document.getElementById("editMessage").innerHTML
         }
         API.putMessage(messageObject, messageObject.id)
@@ -16,7 +16,7 @@ let messagesEvents = {
       } else {
         const messageObject = {
           message: document.getElementById("messageInput").value,
-          userId: document.getElementById("userId").innerHTML
+          userId: sessionStorage.getItem("userId")
         }
         API.postMessage(messageObject)
         .then(data => DOM.buildMessages())
