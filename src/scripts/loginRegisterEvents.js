@@ -8,6 +8,7 @@ const loginRegisterListener = {
       document.getElementById("loginContainer").classList.add("hidden")
       document.getElementById("hideUser").classList.remove("hidden")
       DOM.buildMessages()
+      DOM.renderTasks();
       return
     }
     document.getElementById("loginButton").addEventListener("click", () => {
@@ -55,14 +56,14 @@ const loginRegisterListener = {
       API.fetchUsers()
         .then(users => {
           const person = users.find(user => user.email === createEmail)
-          let newUserId = users.length + 1 
+          let newUserId = users.length + 1
           if (!person) {
             if (createPassword === confirmPassword) {
               API.postUsers({
                 username: createEmail.split("@")[0],
                 email: createEmail,
                 password: createPassword
-              }) 
+              })
               document.getElementById("registerContainer").classList.add("hidden")
               document.getElementById("hideUser").classList.remove("hidden")
               sessionStorage.setItem("userId", newUserId)
@@ -72,8 +73,8 @@ const loginRegisterListener = {
           } else {
             alert("User already exists")
           }
-        }) 
-        DOM.buildMessages()
+        })
+      DOM.buildMessages()
     })
   },
   logout() {
