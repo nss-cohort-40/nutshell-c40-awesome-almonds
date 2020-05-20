@@ -78,18 +78,21 @@ const newsListener = {
       this.presentNewsDashboard()
     })
   },
+  editOrDeleteArticle () {
+    this.presentNewsDashboard()
+    document.getElementById("articleOutput").addEventListener("click", event => {
+      if(event.target.id.includes("delete--")){
+        const artId = event.target.id.split("delete--")[1]
+        API.deleteArticle(artId)
+        .then(newsListener.presentNewsDashboard)
+      }
+      if(event.target.id.includes("edit--")){
+        const artId = event.target.id.split("edit--")[1]
+        DOM.createNewsForm()
+        newsListener.updateArticle(artId)
+      }
+    })
+  }
 }
-
-document.getElementById("articleOutput").addEventListener("click", event => {
-  if(event.target.id.includes("delete--")){
-    const artId = event.target.id.split("delete--")[1]
-    API.deleteArticle(artId)
-    .then(newsListener.presentNewsDashboard)
-  }
-  if(event.target.id.includes("edit--")){
-    const artId = event.target.id.split("edit--")[1]
-    newsListener.updateArticle(artId)
-  }
-})
 
 export default newsListener;
