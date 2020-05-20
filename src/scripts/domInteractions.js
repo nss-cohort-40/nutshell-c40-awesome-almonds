@@ -3,7 +3,7 @@ import API from "./databaseInteractions.js"
 let DOM = {
   buildMessage(messageObject) {
     let userId = sessionStorage.getItem("userId")
-    document.getElementById("messageOutput").innerHTML += `<div>${messageObject.user.username}</div><p>${messageObject.message}<p>`
+    document.getElementById("messageOutput").innerHTML += `<div class="messageDiv"><div>${messageObject.user.username}: ${messageObject.message}</div></div>`
     if (messageObject.userId === userId) {
       document.getElementById("messageOutput").innerHTML += `<button id="edit--${messageObject.id}">Edit</button><button id="delete--${messageObject.id}">Delete</button>`
     }
@@ -21,7 +21,7 @@ let DOM = {
     document.getElementById("articleOutput").innerHTML = ""
     articles.forEach(article => {
       document.getElementById("articleOutput").innerHTML += `
-        <div id="article-div">
+        <div class="article-div">
           <h2 id="article-title-${article.id}">${article.title}</h2>
           <p id="article-synopsis-${article.id}">${article.synopsis}</p>
           <a href="${article.url}" target="_blank" id="article-url-${article.id}">Article Link</a>
@@ -46,9 +46,16 @@ let DOM = {
   },
   createTask(task) {
     let userId = sessionStorage.getItem("userId")
+    if (task.completed) {
+      return
+    }
     document.getElementById("taskOutput").innerHTML += `<div>${task.user.username}</div><p>${task.task}<p>`
     if (task.userId === userId) {
-      document.getElementById("taskOutput").innerHTML += `<button id="edit--${task.id}">Edit</button><button id="delete--${task.id}">Delete</button>`
+      document.getElementById("taskOutput").innerHTML += `<button id="edit--${task.id}">Edit</button>
+      <button id="delete--${task.id}">Delete</button>
+      <input id="taskCompleted--${task.id}" type="checkbox" name="task" value="task">
+      <label for="task">Task Completed?</label>
+      `
     }
   },
   renderTasks() {

@@ -6,8 +6,9 @@ const loginRegisterListener = {
   login() {
     if (sessionStorage.getItem("userId")) {
       document.getElementById("loginContainer").classList.add("hidden")
-      document.getElementById("userContainer").classList.remove("hidden")
+      document.getElementById("hideUser").classList.remove("hidden")
       DOM.buildMessages()
+      DOM.renderTasks();
       return
     }
     document.getElementById("loginButton").addEventListener("click", () => {
@@ -23,7 +24,7 @@ const loginRegisterListener = {
           if (person) {
             if (person.password === userPassword) {
               document.getElementById("loginContainer").classList.add("hidden")
-              document.getElementById("userContainer").classList.remove("hidden")
+              document.getElementById("hideUser").classList.remove("hidden")
               sessionStorage.setItem("userId", person.id)
               DOM.buildMessages()
               document.getElementById("loginEmail").value = ""
@@ -55,16 +56,16 @@ const loginRegisterListener = {
       API.fetchUsers()
         .then(users => {
           const person = users.find(user => user.email === createEmail)
-          let newUserId = users.length + 1 
+          let newUserId = users.length + 1
           if (!person) {
             if (createPassword === confirmPassword) {
               API.postUsers({
                 username: createEmail.split("@")[0],
                 email: createEmail,
                 password: createPassword
-              }) 
+              })
               document.getElementById("registerContainer").classList.add("hidden")
-              document.getElementById("userContainer").classList.remove("hidden")
+              document.getElementById("hideUser").classList.remove("hidden")
               sessionStorage.setItem("userId", newUserId)
             } else {
               alert("Passwords do not match")
@@ -72,15 +73,15 @@ const loginRegisterListener = {
           } else {
             alert("User already exists")
           }
-        }) 
-        DOM.buildMessages()
+        })
+      DOM.buildMessages()
     })
   },
   logout() {
     document.getElementById("logoutButton").addEventListener("click", () => {
       sessionStorage.removeItem("userId")
       document.getElementById("loginContainer").classList.remove("hidden")
-      document.getElementById("userContainer").classList.add("hidden")
+      document.getElementById("hideUser").classList.add("hidden")
     })
   }
 }
