@@ -42,6 +42,41 @@ let DOM = {
       <input id="url" type="text" placeholder="URL">
       <button id="saveArticle">Save Article</button>
     `
+  },
+  buildEventsForm () {
+    let eventsContainer = document.getElementById("eventsContainer")
+    return eventsContainer.innerHTML = `
+    <div class="event">
+    <div class="eventsForm"></div>
+    <label>Event Title</label>
+    <input id="eventTitle" type=text placeholder="Event Name">
+    <label>Event Date</label>
+    <input id="eventDate" type="datetime-local">
+    <label id="eventLocation></label>
+    <input id="eventLocation" placeholder="Event Location>
+    <button id="saveEvent"Save Event</button>
+    </div>
+    `
+  },
+  buildEvents() {
+    API.fetchEvents()
+    .then(events => {
+      document.getElementById("eventsOutput").innerHTML = ""
+      events.forEach(event => {
+        this.buildEvent(event)
+      })
+    })
+  },
+  buildEvent(object) {
+    document.getElementById("eventsOutput").innerHTML += `
+    <div class="event">
+    <div id="eventName--${object.id}">${object.name}</div>
+    <div id="eventDate--${object.id}">${object.date}</div>
+    <div id="eventLocation--${object.id}">${object.location}</div>
+    <button id="edit--${object.id}">Edit</button>
+    <button id="delete--${object.id}">Delete</button>
+    </div>
+    `
   }
 }
 

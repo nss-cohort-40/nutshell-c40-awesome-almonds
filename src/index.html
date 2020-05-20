@@ -44,13 +44,16 @@
                 <input type="text" id="messageInput" placeholder="">
                 <button id="sendMessageButton">Send Message</button>
             </div>
+            <div id="eventsContainer">
+                <input type="text" id="eventsNameInput" placeholder="Event Name">
+                <input type="date" id="eventsDateInput">
+                <input type="text" id="eventsLocationInput" placeholder="Event Location">
+                <button id="eventsSubmit">Make Event</button>
+                <div id="eventsOutput"></div>
+                <div id="eventId" class="hidden"></div>
+            </div>
         </div>
-        <div id="eventsContainer"></div>
     </div>
-    <article id="container"></article>
-
-
     <script type="module" src="./scripts/main.js"></script>
 </body>
-
 </html>

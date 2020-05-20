@@ -1,7 +1,6 @@
 import API from "./databaseInteractions.js";
 import DOM from "./domInteractions.js";
 
-let newsContainer = document.getElementById("articleForm")
 const newsListener = {
   renderNewsFormButton () {
     document.getElementById("articleFormButton").innerHTML = `<button id="createNewsForm">Create News Article</button>`
@@ -24,7 +23,6 @@ const newsListener = {
         document.getElementById("newsTitle").value = ""
         document.getElementById("synopsis").value = ""
         document.getElementById("url").value = ""
-        // let userId = parseInt(document.getElementById("userId").innerHTML)
         if (newsTitle === "" || synopsis === "" || url === ""){
           alert("Must fill in forms")
           return
@@ -56,7 +54,6 @@ const newsListener = {
       document.getElementById("articleId").innerHTML = article.id
       document.getElementById(`synopsis`).value = article.synopsis
       document.getElementById(`url`).value = article.url
-      // document.getElementById("articleUserId").innerHTML = article.userId
     })
   },
   editArticle (articleId) {
@@ -64,7 +61,6 @@ const newsListener = {
       title: document.getElementById("newsTitle").value,
       synopsis: document.getElementById("synopsis").value,
       url: document.getElementById("url").value,
-      // userId: parseInt(document.getElementById("userId").innerHTML),
       userId: sessionStorage.getItem("userId"),
       date: new Date()
     }
@@ -74,7 +70,6 @@ const newsListener = {
       document.getElementById("newsTitle").value = ""
       document.getElementById("synopsis").value = ""
       document.getElementById("url").value = ""
-      // document.getElementById("articleUserId").innerHTML = ""
       this.presentNewsDashboard()
     })
   },

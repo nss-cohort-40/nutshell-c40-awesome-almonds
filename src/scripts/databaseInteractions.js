@@ -74,6 +74,37 @@ const API = {
   getSpecificMessage(messageId) {
     return fetch(`http://localhost:8088/messages/${messageId}`)
     .then(message => message.json())
+  },
+  fetchEvents() {
+    return fetch(`http://localhost:8088/events?userId=${sessionStorage.getItem("userId")}`)
+    .then(events => events.json())
+  },
+  fetchEventById(eventId) {
+    return fetch(`http://localhost:8088/events/${eventId}`)
+    .then(event => event.json())
+  },
+  postEvent(eventObj) {
+    return fetch(`http://localhost:8088/events`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(eventObj)
+    })
+  },
+  deleteEvent(eventId) {
+    return fetch(`http://localhost:8088/events/${eventId}`, {
+      method: "DELETE"
+    })
+  },
+  putEvent(eventObj, eventId) {
+    return fetch(`http://localhost:8088/events/${eventId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(eventObj)
+    }) 
   }
 }
 

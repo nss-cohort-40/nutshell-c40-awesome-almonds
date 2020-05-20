@@ -8,6 +8,7 @@ const loginRegisterListener = {
       document.getElementById("loginContainer").classList.add("hidden")
       document.getElementById("hideUser").classList.remove("hidden")
       DOM.buildMessages()
+      DOM.buildEvents()
       return
     }
     document.getElementById("loginButton").addEventListener("click", () => {
@@ -26,6 +27,7 @@ const loginRegisterListener = {
               document.getElementById("hideUser").classList.remove("hidden")
               sessionStorage.setItem("userId", person.id)
               DOM.buildMessages()
+              DOM.buildEvents()
               document.getElementById("loginEmail").value = ""
               document.getElementById("loginPassword").value = ""
             } else {
@@ -74,6 +76,7 @@ const loginRegisterListener = {
           }
         }) 
         DOM.buildMessages()
+        DOM.buildEvents()
     })
   },
   logout() {
