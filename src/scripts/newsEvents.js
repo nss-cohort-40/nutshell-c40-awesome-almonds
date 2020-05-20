@@ -92,5 +92,4 @@ const newsListener = {
   }
 }
 
-
 export default newsListener;

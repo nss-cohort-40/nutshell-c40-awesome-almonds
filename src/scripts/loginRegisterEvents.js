@@ -6,7 +6,7 @@ const loginRegisterListener = {
   login() {
     if (sessionStorage.getItem("userId")) {
       document.getElementById("loginContainer").classList.add("hidden")
-      document.getElementById("userContainer").classList.remove("hidden")
+      document.getElementById("hideUser").classList.remove("hidden")
       DOM.buildMessages()
       return
     }
@@ -23,7 +23,7 @@ const loginRegisterListener = {
           if (person) {
             if (person.password === userPassword) {
               document.getElementById("loginContainer").classList.add("hidden")
-              document.getElementById("userContainer").classList.remove("hidden")
+              document.getElementById("hideUser").classList.remove("hidden")
               sessionStorage.setItem("userId", person.id)
               DOM.buildMessages()
               document.getElementById("loginEmail").value = ""
@@ -64,7 +64,7 @@ const loginRegisterListener = {
                 password: createPassword
               }) 
               document.getElementById("registerContainer").classList.add("hidden")
-              document.getElementById("userContainer").classList.remove("hidden")
+              document.getElementById("hideUser").classList.remove("hidden")
               sessionStorage.setItem("userId", newUserId)
             } else {
               alert("Passwords do not match")
@@ -80,7 +80,7 @@ const loginRegisterListener = {
     document.getElementById("logoutButton").addEventListener("click", () => {
       sessionStorage.removeItem("userId")
       document.getElementById("loginContainer").classList.remove("hidden")
-      document.getElementById("userContainer").classList.add("hidden")
+      document.getElementById("hideUser").classList.add("hidden")
     })
   }
 }
