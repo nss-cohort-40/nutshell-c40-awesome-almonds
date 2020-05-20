@@ -14,6 +14,9 @@ let messagesEvents = {
         .then(data => DOM.buildMessages())
         document.getElementById("editMessage").innerHTML = "";
       } else {
+        if (document.getElementById("messageInput").value === "") {
+          return
+        }
         const messageObject = {
           message: document.getElementById("messageInput").value,
           userId: sessionStorage.getItem("userId")

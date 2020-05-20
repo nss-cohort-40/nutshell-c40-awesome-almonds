@@ -1,3 +1,30 @@
+body {
+  background-color: rgb(24, 24, 24);
+  color: rgb(255, 239, 176);
+}
+
+#logoContainer {
+  display: flex;
+  justify-content: space-around;
+}
+
+#pageLogo {
+  max-width: 50%;
+  max-height: auto;
+  margin-top: 0em;
+}
 .hidden {
   display: none
+}
+#userContainer {
+  display: flex;
+  justify-content: space-between;
+}
+#logoutButton {
+  max-height: 2em;
+}
+
+#articleForm {
+  display: flex;
+  flex-direction: column;
 }

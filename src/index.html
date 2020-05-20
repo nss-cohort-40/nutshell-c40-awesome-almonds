@@ -6,10 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./styles/main.css">
-    <title>Document</title>
+    <title>Nutshell</title>
 </head>
 
 <body>
+    <div id="logoContainer">
+        <img id="pageLogo" src="https://i.ibb.co/YyFxsT6/nutshell-logo.png" alt="">
+    </div>
+
     <div id="loginContainer">
         <input type="email" placeholder="Email" id="loginEmail">
         <input type="password" placeholder="Password" id="loginPassword">
@@ -23,21 +27,23 @@
         <button type="submit" id="registerButton">Register</button>
     </div>
 
-    <div id="userContainer" class="hidden">
-        <button id="logoutButton">Log Out</button>
-        <div id="userId" class="hidden"></div>
-        <div id="newsContainer">
-            <div id="articleFormButton"></div>
-            <div id="articleForm"></div>
-            <div id="articleOutput"></div>
-        </div>
-        <div id="tasksContainer"></div>
-        <div id="friendsContainer"></div>
-        <div id="messagesContainer">
-            <div id="messageOutput"></div>
-            <div id="editMessage" class="hidden"></div>
-            <input type="text" id="messageInput" placeholder="">
-            <button id="sendMessageButton">Send Message</button>
+    <div id="hideUser" class="hidden">
+        <div id="userContainer">
+            <button id="logoutButton">Log Out</button>
+            <div id="userId" class="hidden"></div>
+            <div id="newsContainer">
+                <div id="articleFormButton"></div>
+                <div id="articleForm"></div>
+                <div id="articleOutput"></div>
+            </div>
+            <div id="tasksContainer"></div>
+            <div id="friendsContainer"></div>
+            <div id="messagesContainer">
+                <div id="messageOutput"></div>
+                <div id="editMessage" class="hidden"></div>
+                <input type="text" id="messageInput" placeholder="">
+                <button id="sendMessageButton">Send Message</button>
+            </div>
         </div>
         <div id="eventsContainer"></div>
     </div>
