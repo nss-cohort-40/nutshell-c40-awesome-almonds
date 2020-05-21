@@ -29,3 +29,10 @@
 * Create a todo list
 * Save news articles
 * Plan events
+
+## Contributors
+
+* John Bain
+* Elijah Lavoie
+* Ronald Lankford
+* Daniel Meza
