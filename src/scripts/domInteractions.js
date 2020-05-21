@@ -11,10 +11,11 @@ let DOM = {
   buildMessages() {
     document.getElementById("messageOutput").innerHTML = ""
     API.fetchMessages()
-    .then(messages => {
-      messages.forEach(message => {
-      DOM.buildMessage(message)
-    })})
+      .then(messages => {
+        messages.forEach(message => {
+          DOM.buildMessage(message)
+        })
+      })
   },
   renderArticles(articles) {
     document.getElementById("articleOutput").innerHTML = ""
@@ -30,7 +31,7 @@ let DOM = {
       `
     });
   },
-  createNewsForm () {
+  createNewsForm() {
     let newsContainer = document.getElementById("articleForm")
     return newsContainer.innerHTML = `
       <div class="hidden" id="articleId"></div>
@@ -42,6 +43,29 @@ let DOM = {
       <input id="url" type="text" placeholder="URL">
       <button id="saveArticle">Save Article</button>
     `
+  },
+  createTask(task) {
+    let userId = sessionStorage.getItem("userId")
+    if (task.completed) {
+      return
+    }
+    document.getElementById("taskOutput").innerHTML += `<div>${task.user.username}</div><p>${task.task}<p>`
+    if (task.userId === userId) {
+      document.getElementById("taskOutput").innerHTML += `<button id="edit--${task.id}">Edit</button>
+      <button id="delete--${task.id}">Delete</button>
+      <input id="taskCompleted--${task.id}" type="checkbox" name="task" value="task">
+      <label for="task">Task Completed?</label>
+      `
+    }
+  },
+  renderTasks() {
+    document.getElementById("taskOutput").innerHTML = ""
+    API.fetchTasks()
+      .then(tasks => {
+        tasks.forEach(task => {
+          DOM.createTask(task)
+        })
+      })
   }
 }
 
