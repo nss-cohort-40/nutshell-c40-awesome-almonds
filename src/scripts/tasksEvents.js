@@ -13,7 +13,11 @@ const tasksEvents = {
           id: document.getElementById("editTask").innerHTML
         }
         API.putTask(task, task.id)
-          .then(data => DOM.renderTasks())
+          .then(data => {
+            DOM.renderTasks()
+            document.getElementById("taskInput").value = "";
+            document.getElementById("expectedCompletion").value = "";
+          })
         document.getElementById("editTask").innerHTML = "";
       } else {
         const task = {
@@ -23,7 +27,11 @@ const tasksEvents = {
           completed: false,
         }
         API.postTask(task)
-          .then(data => DOM.renderTasks())
+          .then(data => {
+            DOM.renderTasks()
+            document.getElementById("taskInput").value = "";
+            document.getElementById("expectedCompletion").value = "";
+          })
       }
     })
   },
