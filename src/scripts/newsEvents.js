@@ -1,7 +1,6 @@
 import API from "./databaseInteractions.js";
 import DOM from "./domInteractions.js";
 
-let newsContainer = document.getElementById("articleForm")
 const newsListener = {
   renderNewsFormButton() {
     document.getElementById("articleFormButton").innerHTML = `<button id="createNewsForm">Create News Article</button>`
@@ -64,7 +63,6 @@ const newsListener = {
       title: document.getElementById("newsTitle").value,
       synopsis: document.getElementById("synopsis").value,
       url: document.getElementById("url").value,
-      // userId: parseInt(document.getElementById("userId").innerHTML),
       userId: sessionStorage.getItem("userId"),
       date: new Date()
     }
