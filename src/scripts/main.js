@@ -2,7 +2,7 @@ import loginRegisterListener from "./loginRegisterEvents.js";
 import newsListener from "./newsEvents.js";
 import messageEvents from "./messagesEvents.js"
 import tasksEvents from "./tasksEvents.js";
-
+import eventsContainer from "./eventsEvents.js"
 
 loginRegisterListener.login();
 loginRegisterListener.register();
@@ -15,4 +15,6 @@ messageEvents.editOrDelete()
 tasksEvents.newTask();
 tasksEvents.editOrDelete();
 tasksEvents.taskCompleted();
+eventsContainer.makeEvent();
+eventsContainer.editOrDelete();
 

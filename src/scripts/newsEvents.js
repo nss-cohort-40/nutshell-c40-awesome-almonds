@@ -1,7 +1,6 @@
 import API from "./databaseInteractions.js";
 import DOM from "./domInteractions.js";
 
-let newsContainer = document.getElementById("articleForm")
 const newsListener = {
   renderNewsFormButton() {
     document.getElementById("articleFormButton").innerHTML = `<button id="createNewsForm">Create News Article</button>`
