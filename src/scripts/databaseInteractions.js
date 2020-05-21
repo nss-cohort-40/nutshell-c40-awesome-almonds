@@ -4,7 +4,6 @@ const API = {
         .then(data => data.json())
     },
     postUsers(data) {
-      console.log(data)
       return fetch(`http://localhost:8088/users`, {
         method: 'POST',
         headers: {

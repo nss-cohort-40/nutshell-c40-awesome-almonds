@@ -20,16 +20,19 @@ let DOM = {
     renderArticles(articles) {
       document.getElementById("articleOutput").innerHTML = ""
       articles.forEach(article => {
-        document.getElementById("articleOutput").innerHTML += `
-        <div class="article-div">
-          <h2 id="article-title-${article.id}">${article.title}</h2>
-          <p id="article-synopsis-${article.id}">${article.synopsis}</p>
-          <a href="${article.url}" target="_blank" id="article-url-${article.id}">Article Link</a>
-          <button id="delete--${article.id}">Delete Article</button>
-          <button id="edit--${article.id}">Edit Article</button>
-        </div>
-      `
-      });
+        let articleUserId = sessionStorage.getItem("userId")
+        if (article.userId === articleUserId) {
+          document.getElementById("articleOutput").innerHTML += `
+          <div class="article-div">
+            <h2 id="article-title-${article.id}">${article.title}</h2>
+            <p id="article-synopsis-${article.id}">${article.synopsis}</p>
+            <a href="${article.url}" target="_blank" id="article-url-${article.id}">Article Link</a>
+            <button id="delete--${article.id}">Delete Article</button>
+            <button id="edit--${article.id}">Edit Article</button>
+          </div>
+          `
+        }
+      });  
     },
     createNewsForm() {
       let newsContainer = document.getElementById("articleForm")

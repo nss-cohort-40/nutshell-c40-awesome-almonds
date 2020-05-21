@@ -23,7 +23,6 @@ const newsListener = {
         document.getElementById("newsTitle").value = ""
         document.getElementById("synopsis").value = ""
         document.getElementById("url").value = ""
-        // let userId = parseInt(document.getElementById("userId").innerHTML)
         if (newsTitle === "" || synopsis === "" || url === "") {
           alert("Must fill in forms")
           return
@@ -35,7 +34,7 @@ const newsListener = {
           synopsis: synopsis,
           date: dateSubmitted
         })
-          .then(this.presentNewsDashboard)
+        .then(this.presentNewsDashboard)
       }
     })
   },
@@ -50,13 +49,12 @@ const newsListener = {
   },
   updateArticle(artId) {
     API.fetchArticleById(artId)
-      .then(article => {
-        document.getElementById("newsTitle").value = article.title
-        document.getElementById("articleId").innerHTML = article.id
-        document.getElementById(`synopsis`).value = article.synopsis
-        document.getElementById(`url`).value = article.url
-        // document.getElementById("articleUserId").innerHTML = article.userId
-      })
+    .then(article => {
+      document.getElementById("newsTitle").value = article.title
+      document.getElementById("articleId").innerHTML = article.id
+      document.getElementById(`synopsis`).value = article.synopsis
+      document.getElementById(`url`).value = article.url
+    })
   },
   editArticle(articleId) {
     const articleObj = {
@@ -67,14 +65,13 @@ const newsListener = {
       date: new Date()
     }
     API.putArticle(articleObj, articleId)
-      .then((event) => {
-        document.getElementById("articleId").innerHTML = ""
-        document.getElementById("newsTitle").value = ""
-        document.getElementById("synopsis").value = ""
-        document.getElementById("url").value = ""
-        // document.getElementById("articleUserId").innerHTML = ""
-        this.presentNewsDashboard()
-      })
+    .then((event) => {
+      document.getElementById("articleId").innerHTML = ""
+      document.getElementById("newsTitle").value = ""
+      document.getElementById("synopsis").value = ""
+      document.getElementById("url").value = ""
+    })
+    .then(this.presentNewsDashboard)
   },
   editOrDeleteArticle() {
     this.presentNewsDashboard()
@@ -87,6 +84,7 @@ const newsListener = {
       if (event.target.id.includes("edit--")) {
         const artId = event.target.id.split("edit--")[1]
         DOM.createNewsForm()
+        this.createNewsObject()
         newsListener.updateArticle(artId)
       }
     })

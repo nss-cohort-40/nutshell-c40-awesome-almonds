@@ -5,11 +5,9 @@ import DOM from "./domInteractions.js"
 const eventsContainer = {
   makeEvent() {
     document.getElementById("eventsSubmit").addEventListener("click", () => {
-      console.log("clicked")
       if (document.getElementById("eventsNameInput").value === "" || document.getElementById("eventsDateInput").value === "" || document.getElementById("eventsLocationInput").value === ""){
         return
       } else if (document.getElementById("eventId").innerHTML === ""){
-        console.log("posting")
         API.postEvent({
           name: document.getElementById("eventsNameInput").value,
           date: document.getElementById("eventsDateInput").value,
@@ -23,7 +21,6 @@ const eventsContainer = {
         document.getElementById("eventsDateInput").value = "";
         document.getElementById("eventsLocationInput").value = "";
       } else {
-        console.log("editing")
         API.putEvent({
           name: document.getElementById("eventsNameInput").value,
           date: document.getElementById("eventsDateInput").value,
@@ -43,11 +40,9 @@ const eventsContainer = {
   editOrDelete() {
     document.getElementById("eventsOutput").addEventListener("click", () => {
       if (event.target.id.includes("edit--")) {
-        console.log("edit button")
         eventsContainer.editEvent(event.target.id.split("--")[1])
       }
       if (event.target.id.includes("delete--")) {
-        console.log("delete button")
         eventsContainer.deleteEvent(event.target.id.split("--")[1])
       }
     })
