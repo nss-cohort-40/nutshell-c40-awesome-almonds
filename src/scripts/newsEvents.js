@@ -2,14 +2,14 @@ import API from "./databaseInteractions.js";
 import DOM from "./domInteractions.js";
 
 const newsListener = {
-  renderNewsFormButton () {
+  renderNewsFormButton() {
     document.getElementById("articleFormButton").innerHTML = `<button id="createNewsForm">Create News Article</button>`
     document.getElementById("createNewsForm").addEventListener("click", event => {
       DOM.createNewsForm(event)
       this.createNewsObject()
     })
   },
-  createNewsObject () {
+  createNewsObject() {
     document.getElementById("saveArticle").addEventListener("click", event => {
       const hiddenArticleId = document.getElementById("articleId")
       if (hiddenArticleId.innerHTML != "") {
@@ -23,7 +23,8 @@ const newsListener = {
         document.getElementById("newsTitle").value = ""
         document.getElementById("synopsis").value = ""
         document.getElementById("url").value = ""
-        if (newsTitle === "" || synopsis === "" || url === ""){
+        // let userId = parseInt(document.getElementById("userId").innerHTML)
+        if (newsTitle === "" || synopsis === "" || url === "") {
           alert("Must fill in forms")
           return
         }
@@ -34,11 +35,11 @@ const newsListener = {
           synopsis: synopsis,
           date: dateSubmitted
         })
-        .then(this.presentNewsDashboard)
+          .then(this.presentNewsDashboard)
       }
-    }) 
+    })
   },
-  presentNewsDashboard () {
+  presentNewsDashboard() {
     API.fetchArticles()
       .then(articles => {
         const sortedArticles = articles.sort((a, b) => {
@@ -47,16 +48,17 @@ const newsListener = {
         DOM.renderArticles(sortedArticles)
       })
   },
-  updateArticle (artId) {
+  updateArticle(artId) {
     API.fetchArticleById(artId)
-    .then(article => {
-      document.getElementById("newsTitle").value = article.title
-      document.getElementById("articleId").innerHTML = article.id
-      document.getElementById(`synopsis`).value = article.synopsis
-      document.getElementById(`url`).value = article.url
-    })
+      .then(article => {
+        document.getElementById("newsTitle").value = article.title
+        document.getElementById("articleId").innerHTML = article.id
+        document.getElementById(`synopsis`).value = article.synopsis
+        document.getElementById(`url`).value = article.url
+        // document.getElementById("articleUserId").innerHTML = article.userId
+      })
   },
-  editArticle (articleId) {
+  editArticle(articleId) {
     const articleObj = {
       title: document.getElementById("newsTitle").value,
       synopsis: document.getElementById("synopsis").value,
@@ -65,23 +67,24 @@ const newsListener = {
       date: new Date()
     }
     API.putArticle(articleObj, articleId)
-    .then((event) => {
-      document.getElementById("articleId").innerHTML = ""
-      document.getElementById("newsTitle").value = ""
-      document.getElementById("synopsis").value = ""
-      document.getElementById("url").value = ""
-      this.presentNewsDashboard()
-    })
+      .then((event) => {
+        document.getElementById("articleId").innerHTML = ""
+        document.getElementById("newsTitle").value = ""
+        document.getElementById("synopsis").value = ""
+        document.getElementById("url").value = ""
+        // document.getElementById("articleUserId").innerHTML = ""
+        this.presentNewsDashboard()
+      })
   },
-  editOrDeleteArticle () {
+  editOrDeleteArticle() {
     this.presentNewsDashboard()
     document.getElementById("articleOutput").addEventListener("click", event => {
-      if(event.target.id.includes("delete--")){
+      if (event.target.id.includes("delete--")) {
         const artId = event.target.id.split("delete--")[1]
         API.deleteArticle(artId)
-        .then(newsListener.presentNewsDashboard)
+          .then(newsListener.presentNewsDashboard)
       }
-      if(event.target.id.includes("edit--")){
+      if (event.target.id.includes("edit--")) {
         const artId = event.target.id.split("edit--")[1]
         DOM.createNewsForm()
         newsListener.updateArticle(artId)
