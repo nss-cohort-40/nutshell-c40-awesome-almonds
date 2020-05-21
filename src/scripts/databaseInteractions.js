@@ -84,7 +84,7 @@ const API = {
       })
     },
     fetchTasks() {
-      return fetch(`http://localhost:8088/tasks?_expand=user`)
+      return fetch(`http://localhost:8088/tasks?_expand=user&userId=${sessionStorage.getItem("userId")}`)
         .then(tasks => tasks.json())
     },
     deleteTask(taskId) {
