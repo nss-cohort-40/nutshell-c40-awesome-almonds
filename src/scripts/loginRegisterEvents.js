@@ -10,7 +10,6 @@ const loginRegisterListener = {
       DOM.buildMessages()
       DOM.renderTasks();
       DOM.buildEvents();
-      return
     }
     document.getElementById("loginButton").addEventListener("click", () => {
       let userEmail = document.getElementById("loginEmail").value
