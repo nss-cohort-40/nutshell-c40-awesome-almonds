@@ -1,5 +1,6 @@
 import API from "./databaseInteractions.js"
 import DOM from "./domInteractions.js"
+import newsListener from "./newsEvents.js"
 
 
 const loginRegisterListener = {
@@ -7,9 +8,10 @@ const loginRegisterListener = {
     if (sessionStorage.getItem("userId")) {
       document.getElementById("loginContainer").classList.add("hidden")
       document.getElementById("hideUser").classList.remove("hidden")
-      DOM.buildMessages()
+      DOM.buildMessages();
       DOM.renderTasks();
       DOM.buildEvents();
+      newsListener.presentNewsDashboard();
     }
     document.getElementById("loginButton").addEventListener("click", () => {
       let userEmail = document.getElementById("loginEmail").value
@@ -28,6 +30,8 @@ const loginRegisterListener = {
               sessionStorage.setItem("userId", person.id)
               DOM.buildMessages()
               DOM.buildEvents()
+              DOM.renderTasks()
+              newsListener.presentNewsDashboard();
               document.getElementById("loginEmail").value = ""
               document.getElementById("loginPassword").value = ""
             } else {
@@ -77,6 +81,8 @@ const loginRegisterListener = {
         })
       DOM.buildMessages()
       DOM.buildEvents()
+      DOM.renderTasks()
+      newsListener.presentNewsDashboard();
     })
   },
   logout() {
