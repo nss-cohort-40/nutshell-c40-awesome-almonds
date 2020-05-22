@@ -16,7 +16,7 @@
             <div id="logoContainer">
                 <img id="pageLogo" src="https://i.ibb.co/YyFxsT6/nutshell-logo.png" alt="">
             </div>
-        <div id="navBarLinks">
+        <div id="navBarLinks" class="hidden">
             <a href="#top">News</a>
             <a href="#tasksContainer">Tasks</a>
             <a href="#messagesContainer">Messages</a>
@@ -25,8 +25,8 @@
     </div>
     <div id="logoContainer">
         <img id="pageLogo" src="https://i.ibb.co/YyFxsT6/nutshell-logo.png" alt="">
+        <button id="logoutButton" class="">Log Out</button>
     </div>
-    <button id="logoutButton">Log Out</button>
 
     <div id="loginContainer">
         <input type="email" placeholder="Email" id="loginEmail">
@@ -44,39 +44,43 @@
     <div id="hideUser" class="hidden">
         <div id="userContainer">
             <div id="userId" class="hidden"></div>
-            <div id="newsContainer" class="class">
-                <h1>News</h1>
-                <hr>
-                <div id="articleFormButton"></div>
-                <div id="articleForm"></div>
-                <div id="articleOutput"></div>
+            <div id="leftColumn">
+                <div id="newsContainer" class="class">
+                    <h1>News</h1>
+                    <hr>
+                    <div id="articleFormButton"></div>
+                    <div id="articleForm"></div>
+                    <div id="articleOutput"></div>
+                </div>
             </div>
-            <div id="tasksContainer" class="class">
-                <h1>Tasks</h1>
-                <hr>
-                <div id="taskOutput"></div>
-                <div id="editTask" class="hidden"></div>
-                <input type="text" id="taskInput" placeholder="">
-                <input type="date" id="expectedCompletion" placeholder="">
-                <button id="createTaskButton">Save Task</button>
-            </div>
-            <div id="messagesContainer" class="class">
-                <h1>Messages</h1>
-                <hr>
-                <div id="messageOutput"></div>
-                <div id="editMessage" class="hidden"></div>
-                <input type="text" id="messageInput" placeholder="">
-                <button id="sendMessageButton">Send Message</button>
-            </div>
-            <div id="eventsContainer" class="class">
-                <h1>Events</h1>
-                <hr>
-                <input type="text" id="eventsNameInput" placeholder="Event Name">
-                <input type="date" id="eventsDateInput">
-                <input type="text" id="eventsLocationInput" placeholder="Event Location">
-                <button id="eventsSubmit">Make Event</button>
-                <div id="eventsOutput"></div>
-                <div id="eventId" class="hidden"></div>
+            <div id="rightColumn">
+                <div id="tasksContainer" class="class">
+                    <h1>Tasks</h1>
+                    <hr>
+                    <div id="taskOutput"></div>
+                    <div id="editTask" class="hidden"></div>
+                    <input type="text" id="taskInput" placeholder="">
+                    <input type="date" id="expectedCompletion" placeholder="">
+                    <button id="createTaskButton">Save Task</button>
+                </div>
+                <div id="messagesContainer" class="class">
+                    <h1>Messages</h1>
+                    <hr>
+                    <div id="messageOutput"></div>
+                    <div id="editMessage" class="hidden"></div>
+                    <input type="text" id="messageInput" placeholder="">
+                    <button id="sendMessageButton">Send Message</button>
+                </div>
+                <div id="eventsContainer" class="class">
+                    <h1>Events</h1>
+                    <hr>
+                    <input type="text" id="eventsNameInput" placeholder="Event Name">
+                    <input type="date" id="eventsDateInput">
+                    <input type="text" id="eventsLocationInput" placeholder="Event Location">
+                    <button id="eventsSubmit">Make Event</button>
+                    <div id="eventsOutput"></div>
+                    <div id="eventId" class="hidden"></div>
+                </div>
             </div>
         </div>
     </div>

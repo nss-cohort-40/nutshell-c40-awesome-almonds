@@ -8,6 +8,8 @@ const loginRegisterListener = {
     if (sessionStorage.getItem("userId")) {
       document.getElementById("loginContainer").classList.add("hidden")
       document.getElementById("hideUser").classList.remove("hidden")
+      document.getElementById("navBarLinks").classList.remove("hidden")
+      document.getElementById("logoutButton").classList.remove("hidden")
       DOM.buildMessages();
       DOM.renderTasks();
       DOM.buildEvents();
@@ -27,6 +29,8 @@ const loginRegisterListener = {
             if (person.password === userPassword) {
               document.getElementById("loginContainer").classList.add("hidden")
               document.getElementById("hideUser").classList.remove("hidden")
+              document.getElementById("navBarLinks").classList.remove("hidden")
+              document.getElementById("logoutButton").classList.remove("hidden")
               sessionStorage.setItem("userId", person.id)
               DOM.buildMessages()
               DOM.buildEvents()
@@ -71,6 +75,8 @@ const loginRegisterListener = {
               })
               document.getElementById("registerContainer").classList.add("hidden")
               document.getElementById("hideUser").classList.remove("hidden")
+              document.getElementById("navBarLinks").classList.remove("hidden")
+              document.getElementById("logoutButton").classList.remove("hidden")
               sessionStorage.setItem("userId", newUserId)
             } else {
               alert("Passwords do not match")
@@ -90,6 +96,8 @@ const loginRegisterListener = {
       sessionStorage.removeItem("userId")
       document.getElementById("loginContainer").classList.remove("hidden")
       document.getElementById("hideUser").classList.add("hidden")
+      document.getElementById("navBarLinks").classList.add("hidden")
+      document.getElementById("logoutButton").classList.add("hidden")
     })
   }
 }
