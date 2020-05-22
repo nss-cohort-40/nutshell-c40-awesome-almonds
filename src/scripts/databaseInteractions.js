@@ -1,3 +1,7 @@
+/*
+    Authors: John, Daniel, Elijah, Ronnie
+    Purpose: Fetching data from the database to interact with the other modules.
+*/
 const API = {
     fetchUsers() {
       return fetch(`http://localhost:8088/users`)

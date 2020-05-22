@@ -1,3 +1,7 @@
+/*
+    Authors: John, Daniel, Elijah, Ronnie
+    Purpose: Event listeners for News Events. Gets data from the database and posts to DOM
+*/
 import API from "./databaseInteractions.js";
 import DOM from "./domInteractions.js";
 

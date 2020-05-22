@@ -1,3 +1,7 @@
+/*
+    Authors: John, Daniel, Elijah, Ronnie
+    Purpose: Builds DOM elements using data from databaseinteractions.js
+*/
 import API from "./databaseInteractions.js"
 
 let DOM = {
