@@ -1,3 +1,8 @@
+/*
+    Authors: John, Daniel, Elijah, Ronnie
+    Purpose: Shows messages from all users and allows the current user to edit their own messages
+*/
+
 import API from "./databaseInteractions.js"
 import DOM from "./domInteractions.js"
 

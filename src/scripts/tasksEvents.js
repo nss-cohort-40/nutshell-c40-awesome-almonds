@@ -1,3 +1,8 @@
+/*
+    Authors: John, Daniel, Elijah, Ronnie
+    Purpose: Contains functions to create, edit, and delete tasks. 
+*/
+
 import API from "./databaseInteractions.js"
 import DOM from "./domInteractions.js"
 

@@ -1,3 +1,8 @@
+/*
+    Authors: John, Daniel, Elijah, Ronnie
+    Purpose: Main code behind login/register functions which allows user to gain access to the website.
+*/
+
 import API from "./databaseInteractions.js"
 import DOM from "./domInteractions.js"
 import newsListener from "./newsEvents.js"

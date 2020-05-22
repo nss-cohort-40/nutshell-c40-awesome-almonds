@@ -1,3 +1,8 @@
+/*
+    Authors: John, Daniel, Elijah, Ronnie
+    Purpose: Set up events functions, allowing user to create, edit, and delete events which are only visible to them due to event objects in database being linked to the creating user's id.
+*/
+
 import API from "./databaseInteractions.js"
 import DOM from "./domInteractions.js"
 
