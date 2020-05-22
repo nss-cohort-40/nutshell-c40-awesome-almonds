@@ -27,8 +27,8 @@ let DOM = {
             <h2 id="article-title-${article.id}">${article.title}</h2>
             <p id="article-synopsis-${article.id}">${article.synopsis}</p>
             <a href="${article.url}" target="_blank" id="article-url-${article.id}">Article Link</a>
-            <button id="delete--${article.id}">Delete Article</button>
             <button id="edit--${article.id}">Edit Article</button>
+            <button id="delete--${article.id}">Delete Article</button>
           </div>
           `
         }
@@ -41,7 +41,7 @@ let DOM = {
       <label>News Title</label> 
       <input id="newsTitle" type="text" placeholder="News Title">
       <label>Synopsis</label>
-      <input id="synopsis" type="text" placeholder="Synopsis">
+      <textarea id="synopsis" type="text" placeholder="What Cha Got To Say?" cols="30" rows="4"></textarea>
       <label>URL</label>
       <input id="url" type="text" placeholder="URL">
       <button id="saveArticle">Save Article</button>
